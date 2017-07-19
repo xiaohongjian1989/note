@@ -8,6 +8,7 @@
     .note-head {
         height: 20px;
         background-color: #ea9b35;
+        border-radius: 3px 3px 0 0;
         cursor: move;
 
         &:hover .delete {
@@ -26,19 +27,7 @@
             background: #35bba3;
         }
 
-        &:after {
-            position: absolute;
-            left: 50%;
-            margin-left: 32px;
-            top: -11px;
-            z-index: -1;
-            content: " ";
-            display: block;
-            width: 0;
-            height: 0;
-            border-left: 5px solid #299683;
-            border-top: 18px solid transparent;
-        }
+    
     }
 
     .note-ct {
