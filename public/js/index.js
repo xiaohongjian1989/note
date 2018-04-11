@@ -368,7 +368,7 @@ Note.prototype = {
         this.$note.find('.note-ct').html(this.opts.content);
         this.opts.$ct.append(this.$note);
         if(!this.id) {
-            this.$note.css('bottom', '10px');
+            this.$note.css({left: '2px', top: '550px'});
         }
     },
 
@@ -419,10 +419,10 @@ Note.prototype = {
         $noteHead.on('mousedown', function (e) {
             var evtX = e.pageX - $note.offset().left,
                 evtY = e.pageY - $note.offset().top;
-            
+
             $note.addClass('draggable').data('evtPos', {x: evtX, y: evtY});
         }).on('mouseup', function () {
-            $note.removeClass('draggable').removeData('pos');
+            $note.removeClass('draggable').removeData('evtPos');
         });
 
         $('body').on('mousemove', function(e){
@@ -430,6 +430,7 @@ Note.prototype = {
                 top: e.pageY - $('.draggable').data('evtPos').y,    // 当用户鼠标移动时，根据鼠标的位置和前面保存的距离，计算 dialog 的绝对位置
                 left: e.pageX - $('.draggable').data('evtPos').x
             });
+
         });
     },
 
@@ -470,6 +471,9 @@ Note.prototype = {
         })
     },
     delete: function(){
+        if (!this.id) {
+            this.$note.remove();
+        }
         var self = this;
         $.ajax({
             url: '/api/notes/delete',
