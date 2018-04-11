@@ -145,6 +145,9 @@ Note.prototype = {
         })
     },
     delete: function(){
+        if (!this.id) {
+            this.$note.remove();
+        }
         var self = this;
         $.ajax({
             url: '/api/notes/delete',
